@@ -1,4 +1,5 @@
 import {Args, Command, Flags} from '@oclif/core'
+import {hello} from '@salesforce/b2c-tooling'
 
 export default class Hello extends Command {
   static args = {
@@ -17,6 +18,6 @@ hello friend from oclif! (./src/commands/hello/index.ts)
   async run(): Promise<void> {
     const {args, flags} = await this.parse(Hello)
 
-    this.log(`hello ${args.person} from ${flags.from}! (./src/commands/hello/index.ts)`)
+    this.log(`${hello(args.person, flags.from)} (./src/commands/hello/index.ts)`)
   }
 }

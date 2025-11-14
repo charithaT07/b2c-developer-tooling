@@ -19,6 +19,9 @@ importers:
       '@oclif/plugin-plugins':
         specifier: ^5
         version: 5.4.53
+      '@salesforce/b2c-tooling':
+        specifier: workspace:*
+        version: link:../b2c-tooling
     devDependencies:
       '@eslint/compat':
         specifier: ^1
@@ -62,6 +65,21 @@ importers:
       ts-node:
         specifier: ^10
         version: 10.9.2(@types/node@18.19.130)(typescript@5.9.3)
+      typescript:
+        specifier: ^5
+        version: 5.9.3
+
+  packages/b2c-tooling:
+    devDependencies:
+      '@types/node':
+        specifier: ^18
+        version: 18.19.130
+      eslint:
+        specifier: ^9
+        version: 9.39.1
+      shx:
+        specifier: ^0.3.3
+        version: 0.3.4
       typescript:
         specifier: ^5
         version: 5.9.3

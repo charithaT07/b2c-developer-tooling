@@ -1,0 +1,50 @@
+{
+  "name": "@salesforce/b2c-tooling",
+  "version": "0.0.0",
+  "description": "Core tooling library for Salesforce Commerce Cloud B2C CLI",
+  "author": "Charles Lavery",
+  "license": "MIT",
+  "repository": "SalesforceCommerceCloud/b2c-cli",
+  "keywords": [
+    "SFCC",
+    "B2C",
+    "Commerce Cloud",
+    "tooling"
+  ],
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      }
+    }
+  },
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "pnpm run build:esm && pnpm run build:cjs",
+    "build:esm": "tsc -p tsconfig.esm.json",
+    "build:cjs": "tsc -p tsconfig.cjs.json && echo '{\"type\":\"commonjs\"}' > dist/cjs/package.json",
+    "clean": "shx rm -rf dist",
+    "lint": "eslint src --ext .ts",
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "devDependencies": {
+    "@types/node": "^18",
+    "eslint": "^9",
+    "shx": "^0.3.3",
+    "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
