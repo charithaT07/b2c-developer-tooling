@@ -6,7 +6,7 @@ import { B2CInstance } from '../../instance/index.js';
  */
 export async function uploadCartridges(
   instance: B2CInstance,
-  rootDir: string
+  _rootDir: string
 ): Promise<void> {
   if (!instance.config.codeVersion) {
     throw new Error('Code version required for upload');

@@ -1,5 +1,6 @@
 import { Args, Flags } from '@oclif/core'
 import { OAuthCommand } from '@salesforce/b2c-tooling/cli'
+import { t } from '../../i18n/index.js'
 
 /**
  * Stub command demonstrating OAuthCommand usage.
@@ -13,7 +14,7 @@ export default class SandboxCreate extends OAuthCommand<typeof SandboxCreate> {
     }),
   }
 
-  static description = 'Create a new on-demand sandbox'
+  static description = t('commands.sandbox.create.description', 'Create a new on-demand sandbox')
 
   static examples = [
     '<%= config.bin %> <%= command.id %> abcd --ttl 24',
@@ -34,14 +35,19 @@ export default class SandboxCreate extends OAuthCommand<typeof SandboxCreate> {
   async run(): Promise<void> {
     this.requireOAuthCredentials()
 
-    this.log(`Creating sandbox in realm ${this.args.realm}...`)
-    this.log(`Profile: ${this.flags.profile}`)
-    this.log(`TTL: ${this.flags.ttl} hours`)
+    const realm = this.args.realm
+    const profile = this.flags.profile
+    const ttl = this.flags.ttl
+    const clientId = this.resolvedConfig.clientId
+
+    this.log(t('commands.sandbox.create.creating', 'Creating sandbox in realm {{realm}}...', { realm }))
+    this.log(t('commands.sandbox.create.profile', 'Profile: {{profile}}', { profile }))
+    this.log(t('commands.sandbox.create.ttl', 'TTL: {{ttl}} hours', { ttl }))
 
     // TODO: Implement actual ODS API call using this.getOAuthStrategy()
 
     this.log('')
-    this.log('(stub) Sandbox creation not yet implemented')
-    this.log(`Would create sandbox with OAuth client: ${this.resolvedConfig.clientId}`)
+    this.log(t('commands.sandbox.create.stub', '(stub) Sandbox creation not yet implemented'))
+    this.log(t('commands.sandbox.create.wouldCreate', 'Would create sandbox with OAuth client: {{clientId}}', { clientId }))
   }
 }

@@ -8,7 +8,15 @@ export {
 } from './logger.js';
 
 // i18n
-export { t, getI18nInstance } from './i18n.js';
+export {
+  t,
+  setLanguage,
+  getLanguage,
+  getI18nInstance,
+  registerTranslations,
+  B2C_NAMESPACE,
+} from './i18n/index.js';
+export type { TOptions } from './i18n/index.js';
 
 // Auth Layer - Strategies
 export {

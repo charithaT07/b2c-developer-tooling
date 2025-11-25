@@ -4,7 +4,7 @@ import { loadConfig, ResolvedConfig, LoadConfigOptions } from './config.js'
 import { AuthStrategy } from '../auth/types.js'
 import { ApiKeyStrategy } from '../auth/api-key.js'
 import { MrtClient, MrtProject } from '../platform/mrt.js'
-import { t } from '../i18n.js'
+import { t } from '../i18n/index.js'
 
 /**
  * Base command for Managed Runtime (MRT) operations.

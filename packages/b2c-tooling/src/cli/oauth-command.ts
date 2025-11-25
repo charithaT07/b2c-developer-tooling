@@ -3,7 +3,7 @@ import { BaseCommand } from './base-command.js'
 import { loadConfig, ResolvedConfig, LoadConfigOptions } from './config.js'
 import { AuthStrategy } from '../auth/types.js'
 import { OAuthStrategy } from '../auth/oauth.js'
-import { t } from '../i18n.js'
+import { t } from '../i18n/index.js'
 
 /**
  * Base command for operations requiring OAuth authentication.

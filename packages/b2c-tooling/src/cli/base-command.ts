@@ -1,6 +1,7 @@
 import { Command, Flags, Interfaces } from '@oclif/core'
 import { loadConfig, ResolvedConfig, LoadConfigOptions } from './config.js'
 import { setLogger, consoleLogger } from '../logger.js'
+import { setLanguage } from '../i18n/index.js'
 
 export type Flags<T extends typeof Command> = Interfaces.InferredFlags<
   (typeof BaseCommand)['baseFlags'] & T['flags']
@@ -25,6 +26,11 @@ export abstract class BaseCommand<T extends typeof Command> extends Command {
       description: 'Enable debug logging',
       env: 'SFCC_DEBUG',
       default: false,
+      helpGroup: 'GLOBAL',
+    }),
+    lang: Flags.string({
+      char: 'L',
+      description: 'Language for messages (e.g., en, de). Also respects LANGUAGE env var.',
       helpGroup: 'GLOBAL',
     }),
     config: Flags.string({
@@ -56,6 +62,12 @@ export abstract class BaseCommand<T extends typeof Command> extends Command {
 
     this.flags = flags as Flags<T>
     this.args = args as Args<T>
+
+    // Set language first so all messages are localized
+    // Flag takes precedence (env var is handled by i18n module at import time)
+    if (this.flags.lang) {
+      setLanguage(this.flags.lang)
+    }
 
     if (this.flags.debug) {
       setLogger(consoleLogger)

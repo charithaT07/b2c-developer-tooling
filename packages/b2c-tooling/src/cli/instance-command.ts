@@ -5,7 +5,7 @@ import { AuthStrategy } from '../auth/types.js'
 import { BasicAuthStrategy } from '../auth/basic.js'
 import { OAuthStrategy } from '../auth/oauth.js'
 import { B2CInstance } from '../instance/index.js'
-import { t } from '../i18n.js'
+import { t } from '../i18n/index.js'
 
 /**
  * Base command for B2C instance operations.
