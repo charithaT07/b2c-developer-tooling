@@ -1,0 +1,19 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["./packages/b2c-tooling/src/index.ts"],
+  "out": "./docs/api",
+  "plugin": ["typedoc-plugin-markdown", "typedoc-vitepress-theme"],
+  "tsconfig": "./packages/b2c-tooling/tsconfig.json",
+  "readme": "none",
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeInternal": true,
+  "hideGenerator": true,
+  "githubPages": false,
+  "entryPointStrategy": "expand",
+  "outputFileStrategy": "modules",
+  "navigation": {
+    "includeCategories": true,
+    "includeGroups": true
+  }
+}

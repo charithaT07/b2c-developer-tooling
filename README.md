@@ -19,5 +19,6 @@ See [Tooling SDK README](./packages/b2c-tooling/README.md) for more details.
 
 ```bash
 pnpm install
-pnpm run dev # start the cli in dev mode
+pnpm start # start the cli in dev mode; see CLI readme for more details
+pnpm test
 ```
