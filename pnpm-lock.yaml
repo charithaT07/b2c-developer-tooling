@@ -32,6 +32,9 @@ importers:
       '@oclif/test':
         specifier: ^4
         version: 4.1.14(@oclif/core@4.8.0)
+      '@salesforce/dev-config':
+        specifier: ^4.3.2
+        version: 4.3.2
       '@types/chai':
         specifier: ^4
         version: 4.3.20
@@ -81,6 +84,9 @@ importers:
       '@oclif/core':
         specifier: ^4
         version: 4.8.0
+      '@salesforce/dev-config':
+        specifier: ^4.3.2
+        version: 4.3.2
       '@types/node':
         specifier: ^18
         version: 18.19.130
@@ -753,6 +759,9 @@ packages:
 
   '@rtsao/scc@1.1.0':
     resolution: {integrity: sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g==}
+
+  '@salesforce/dev-config@4.3.2':
+    resolution: {integrity: sha512-mxhsWV1rzHfhGMVSFQRLOHZTGfB1R2FtqbuIb3hrgDFsW1NLjEDS2U+eZWBJiCYod1JeGpJxnETNq587lem1Gg==}
 
   '@sindresorhus/is@5.6.0':
     resolution: {integrity: sha512-TV7t8GKYaJWsn00tFDqBw8+Uqmr8A0fRU1tvTQhyZzGv0sJCGRQL3JGMI3ucuKo3XIZdUP+Lx7/gh2t3lewy7g==}
@@ -4109,6 +4118,8 @@ snapshots:
       config-chain: 1.1.13
 
   '@rtsao/scc@1.1.0': {}
+
+  '@salesforce/dev-config@4.3.2': {}
 
   '@sindresorhus/is@5.6.0': {}
 

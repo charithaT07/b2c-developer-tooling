@@ -17,6 +17,7 @@
     "@eslint/compat": "^1",
     "@oclif/prettier-config": "^0.2.1",
     "@oclif/test": "^4",
+    "@salesforce/dev-config": "^4.3.2",
     "@types/chai": "^4",
     "@types/mocha": "^10",
     "@types/node": "^18",
@@ -78,7 +79,7 @@
   },
   "repository": "SalesforceCommerceCloud/b2c-cli",
   "scripts": {
-    "build": "shx rm -rf dist && tsc -b",
+    "build": "shx rm -rf dist && tsc",
     "lint": "eslint",
     "postpack": "shx rm -f oclif.manifest.json",
     "posttest": "pnpm run lint",

@@ -1,8 +1,6 @@
 {
+  "extends": "@salesforce/dev-config/tsconfig-strict-esm",
   "compilerOptions": {
-    "declaration": true,
-    "strict": true,
-    "target": "es2022",
     "skipLibCheck": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true

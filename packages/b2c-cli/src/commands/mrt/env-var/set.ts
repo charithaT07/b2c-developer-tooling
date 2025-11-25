@@ -38,19 +38,9 @@ export default class MrtEnvVarSet extends MrtCommand<typeof MrtEnvVarSet> {
   async run(): Promise<void> {
     this.requireMrtCredentials()
 
-    const client = this.createMrtClient({
-      org: 'default', // Would come from config
-      project: this.flags.project,
-      env: this.flags.environment,
-    })
-
     this.log(`Setting ${this.args.key} on ${this.flags.project}/${this.flags.environment}...`)
 
-    // TODO: Implement actual MRT API call
-    // const response = await client.request(`projects/${this.flags.project}/envs/${this.flags.environment}/variables`, {
-    //   method: 'POST',
-    //   body: JSON.stringify({ key: this.args.key, value: this.args.value })
-    // })
+    // TODO: Implement actual MRT API call using this.createMrtClient()
 
     this.log('')
     this.log('(stub) Environment variable setting not yet implemented')

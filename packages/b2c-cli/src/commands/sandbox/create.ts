@@ -34,17 +34,11 @@ export default class SandboxCreate extends OAuthCommand<typeof SandboxCreate> {
   async run(): Promise<void> {
     this.requireOAuthCredentials()
 
-    const auth = this.getOAuthStrategy()
-
     this.log(`Creating sandbox in realm ${this.args.realm}...`)
     this.log(`Profile: ${this.flags.profile}`)
     this.log(`TTL: ${this.flags.ttl} hours`)
 
-    // TODO: Implement actual ODS API call
-    // const response = await auth.fetch(
-    //   `https://admin.dx.commercecloud.salesforce.com/api/v1/realms/${this.args.realm}/sandboxes`,
-    //   { method: 'POST', body: JSON.stringify({ ttl: this.flags.ttl, profile: this.flags.profile }) }
-    // )
+    // TODO: Implement actual ODS API call using this.getOAuthStrategy()
 
     this.log('')
     this.log('(stub) Sandbox creation not yet implemented')
