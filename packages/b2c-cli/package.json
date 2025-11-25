@@ -64,6 +64,15 @@
       },
       "code": {
         "description": "Manage cartridge code on instances"
+      },
+      "sites": {
+        "description": "Manage sites on instances"
+      },
+      "sandbox": {
+        "description": "Manage on-demand sandboxes"
+      },
+      "mrt": {
+        "description": "Managed Runtime operations"
       }
     }
   },
@@ -76,7 +85,8 @@
     "prepack": "oclif manifest && oclif readme",
     "pretest": "tsc --noEmit -p test",
     "test": "OCLIF_TEST_ROOT=. mocha --forbid-only \"test/**/*.test.ts\"",
-    "version": "oclif readme && git add README.md"
+    "version": "oclif readme && git add README.md",
+    "dev": "node ./bin/dev.js"
   },
   "types": "dist/index.d.ts"
 }

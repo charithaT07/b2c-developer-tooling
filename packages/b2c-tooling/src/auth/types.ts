@@ -14,3 +14,20 @@ export interface AuthStrategy {
    */
   getAuthorizationHeader?(): Promise<string>;
 }
+
+/**
+ * Access token response structure from Account Manager
+ */
+export interface AccessTokenResponse {
+  accessToken: string;
+  expires: Date;
+  scopes: string[];
+}
+
+/**
+ * Decoded JWT structure
+ */
+export interface DecodedJWT {
+  header: Record<string, unknown>;
+  payload: Record<string, unknown>;
+}

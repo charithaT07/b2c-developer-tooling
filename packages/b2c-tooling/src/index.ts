@@ -1,10 +1,25 @@
+// Logger
+export {
+  Logger,
+  noopLogger,
+  consoleLogger,
+  setLogger,
+  getLogger,
+} from './logger.js';
+
+// i18n
+export { t, getI18nInstance } from './i18n.js';
+
 // Auth Layer - Strategies
 export {
   AuthStrategy,
+  AccessTokenResponse,
+  DecodedJWT,
   BasicAuthStrategy,
   OAuthStrategy,
   OAuthConfig,
   ApiKeyStrategy,
+  decodeJWT,
 } from './auth/index.js';
 
 // Context Layer - Instance

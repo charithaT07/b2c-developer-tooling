@@ -1,5 +1,15 @@
-export { run } from '@oclif/core';
+export { run } from '@oclif/core'
 
-// Config utilities for programmatic use
-export { loadConfig, ResolvedConfig } from './config/loader.js';
-export { AuthResolver } from './config/auth-resolver.js';
+// Re-export CLI utilities from b2c-tooling for convenience
+export {
+  // Command base classes
+  BaseCommand,
+  OAuthCommand,
+  InstanceCommand,
+  MrtCommand,
+  // Config utilities
+  loadConfig,
+  findDwJson,
+  ResolvedConfig,
+  LoadConfigOptions,
+} from '@salesforce/b2c-tooling/cli'

@@ -4,7 +4,8 @@
   "description": "Salesforce Commerce Cloud B2C Command Line Tools",
   "main": "index.js",
   "scripts": {
-    "test": "pnpm -r test"
+    "test": "pnpm -r test",
+    "start": "pnpm --filter @salesforce/b2c-cli run dev"
   },
   "keywords": [],
   "author": "",

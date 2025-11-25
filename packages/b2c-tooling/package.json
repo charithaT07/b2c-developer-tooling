@@ -82,6 +82,16 @@
         "types": "./dist/cjs/operations/sites/index.d.ts",
         "default": "./dist/cjs/operations/sites/index.js"
       }
+    },
+    "./cli": {
+      "import": {
+        "types": "./dist/esm/cli/index.d.ts",
+        "default": "./dist/esm/cli/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/cli/index.d.ts",
+        "default": "./dist/cjs/cli/index.js"
+      }
     }
   },
   "main": "./dist/cjs/index.js",
@@ -100,6 +110,7 @@
   },
   "devDependencies": {
     "@eslint/compat": "^1",
+    "@oclif/core": "^4",
     "@types/node": "^18",
     "eslint": "^9",
     "eslint-config-prettier": "^10",
@@ -107,7 +118,18 @@
     "typescript": "^5",
     "typescript-eslint": "^8"
   },
+  "peerDependencies": {
+    "@oclif/core": "^4"
+  },
+  "peerDependenciesMeta": {
+    "@oclif/core": {
+      "optional": true
+    }
+  },
   "engines": {
     "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "i18next": "^25.6.3"
   }
 }
