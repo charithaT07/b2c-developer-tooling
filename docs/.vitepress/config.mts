@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress';
 export default defineConfig({
   title: 'B2C CLI',
   description: 'Salesforce Commerce Cloud B2C Command Line Tools',
-  base: '/b2c-cli/',
+  base: '',
 
   // Show deeper heading levels in the outline
   markdown: {
