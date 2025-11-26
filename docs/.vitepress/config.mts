@@ -1,6 +1,28 @@
 import { defineConfig } from 'vitepress';
 import typedocSidebar from '../api/typedoc-sidebar.json';
 
+const guideSidebar = [
+  {
+    text: 'Getting Started',
+    items: [
+      { text: 'Introduction', link: '/guide/' },
+      { text: 'Installation', link: '/guide/installation' },
+      { text: 'Configuration', link: '/guide/configuration' },
+    ],
+  },
+  {
+    text: 'CLI Reference',
+    items: [
+      { text: 'Overview', link: '/cli/' },
+      { text: 'Code Commands', link: '/cli/code' },
+      { text: 'Sites Commands', link: '/cli/sites' },
+      { text: 'Sandbox Commands', link: '/cli/sandbox' },
+      { text: 'MRT Commands', link: '/cli/mrt' },
+      { text: 'Logging', link: '/cli/logging' },
+    ],
+  },
+];
+
 export default defineConfig({
   title: 'B2C CLI',
   description: 'Salesforce Commerce Cloud B2C Command Line Tools',
@@ -28,28 +50,8 @@ export default defineConfig({
     },
 
     sidebar: {
-      '/guide/': [
-        {
-          text: 'Getting Started',
-          items: [
-            { text: 'Introduction', link: '/guide/' },
-            { text: 'Installation', link: '/guide/installation' },
-            { text: 'Configuration', link: '/guide/configuration' },
-          ],
-        },
-      ],
-      '/cli/': [
-        {
-          text: 'CLI Reference',
-          items: [
-            { text: 'Overview', link: '/cli/' },
-            { text: 'Code Commands', link: '/cli/code' },
-            { text: 'Sites Commands', link: '/cli/sites' },
-            { text: 'Sandbox Commands', link: '/cli/sandbox' },
-            { text: 'MRT Commands', link: '/cli/mrt' },
-          ],
-        },
-      ],
+      '/guide/': guideSidebar,
+      '/cli/': guideSidebar,
       '/api/': [
         {
           text: 'API Reference',
