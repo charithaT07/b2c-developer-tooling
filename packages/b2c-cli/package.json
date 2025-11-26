@@ -81,7 +81,7 @@
   },
   "repository": "SalesforceCommerceCloud/b2c-cli",
   "scripts": {
-    "build": "shx rm -rf dist && tsc",
+    "build": "shx rm -rf dist && tsc -p tsconfig.build.json",
     "lint": "eslint",
     "format": "prettier --write src",
     "format:check": "prettier --check src",

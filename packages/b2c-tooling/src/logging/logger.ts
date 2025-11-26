@@ -31,7 +31,7 @@ function censor(value: unknown): string {
 }
 
 let globalLogger: Logger | null = null;
-let globalOptions: LoggerOptions = {level: 'info'};
+let globalOptions: LoggerOptions = {level: 'silent'};
 
 function createPinoLogger(options: LoggerOptions): Logger {
   const level = options.level ?? 'info';
@@ -89,7 +89,7 @@ export function getLogger(): Logger {
 
 export function resetLogger(): void {
   globalLogger = null;
-  globalOptions = {level: 'info'};
+  globalOptions = {level: 'silent'};
 }
 
 export function createSilentLogger(): Logger {
