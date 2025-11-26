@@ -16,3 +16,9 @@
 - TypeDoc and vitepress will generate documentation from these comments in the `./docs/api` folder
 - module level jsdocs will be used for organization; for example packages/b2c-tooling/src/auth/index.ts barrel file has the module level docs for the `auth` module
 - see the typedoc.json file for configuration options including the entry points for documentation generation
+
+## Logging
+
+- when logging use the logger instance from `@salesforce/b2c-tooling/logger` package
+- CLI commands have access to this logger via `this.log` method from oclif Command class
+- CLI 

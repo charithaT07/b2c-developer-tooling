@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+# simple wrapper to the ./packages/b2c-cli/bin/dev.js script
+pushd ./packages/b2c-cli > /dev/null
+./bin/dev.js "$@"
+popd > /dev/null

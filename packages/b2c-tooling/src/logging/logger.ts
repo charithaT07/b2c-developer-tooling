@@ -64,7 +64,7 @@ function createPinoLogger(options: LoggerOptions): Logger {
     destination: fd,
     sync: true,
     colorize,
-    ignore: 'pid,hostname',
+    ignore: 'pid,hostname' + (isVerbose ? '' : ',time'),
     hideObject: !isVerbose,
   });
 

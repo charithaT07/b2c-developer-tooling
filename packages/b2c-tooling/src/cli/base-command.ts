@@ -87,15 +87,8 @@ export abstract class BaseCommand<T extends typeof Command> extends Command {
    * Priority: NO_COLOR > SFCC_LOG_COLORIZE > TTY detection
    */
   private shouldColorize(): boolean {
-    // NO_COLOR is the industry standard
     if (process.env.NO_COLOR !== undefined) {
       return false;
-    }
-
-    // Explicit override
-    const colorizeEnv = process.env.SFCC_LOG_COLORIZE;
-    if (colorizeEnv !== undefined) {
-      return colorizeEnv !== 'false' && colorizeEnv !== '0';
     }
 
     // Default: colorize if stderr is a TTY
