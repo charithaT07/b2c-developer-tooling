@@ -21,4 +21,4 @@
 
 - when logging use the logger instance from `@salesforce/b2c-tooling/logger` package
 - CLI commands have access to this logger via `this.log` method from oclif Command class
-- CLI 
+- CLI commands can write directly to stdout/stderr if their primary purpose is to output or stream data
