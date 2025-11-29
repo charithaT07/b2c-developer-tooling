@@ -20,8 +20,8 @@
  * // WebDAV operations
  * await instance.webdav.put('Cartridges/v1/app.zip', content);
  *
- * // OCAPI operations
- * const sites = await instance.ocapi.get('sites');
+ * // OCAPI operations (openapi-fetch)
+ * const { data } = await instance.ocapi.GET('/sites', {});
  * ```
  *
  * @module clients

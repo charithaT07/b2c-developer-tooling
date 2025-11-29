@@ -20,7 +20,7 @@
  *
  * // Use typed clients
  * await instance.webdav.put('Cartridges/v1/app.zip', content);
- * const sites = await instance.ocapi.get('sites');
+ * const { data } = await instance.ocapi.GET('/sites', {});
  * ```
  *
  * ### Direct construction
@@ -97,7 +97,7 @@ export interface FromDwJsonOptions {
  * await instance.webdav.mkcol('Cartridges/v1');
  *
  * // OCAPI always uses OAuth
- * const sites = await instance.ocapi.get('sites');
+ * const { data } = await instance.ocapi.GET('/sites', {});
  */
 export class B2CInstance {
   private _webdav?: WebDavClient;

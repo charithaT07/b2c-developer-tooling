@@ -28,7 +28,7 @@ import {t} from '../i18n/index.js';
  * export default class MySiteCommand extends InstanceCommand<typeof MySiteCommand> {
  *   async run(): Promise<void> {
  *     // Single instance for all operations
- *     const sites = await this.instance.ocapi.get('sites');
+ *     const { data } = await this.instance.ocapi.GET('/sites', {});
  *     await this.instance.webdav.mkcol('Cartridges/v1');
  *   }
  * }
@@ -99,7 +99,7 @@ export abstract class InstanceCommand<T extends typeof Command> extends OAuthCom
    * await this.instance.webdav.mkcol('Cartridges/v1');
    *
    * // OCAPI operations (uses OAuth)
-   * const sites = await this.instance.ocapi.get('sites');
+   * const { data } = await this.instance.ocapi.GET('/sites', {});
    */
   protected get instance(): B2CInstance {
     if (!this._instance) {

@@ -11,6 +11,8 @@
     "@oclif/core": "^4",
     "@oclif/plugin-help": "^6",
     "@oclif/plugin-plugins": "^5",
+    "@oclif/plugin-not-found": "^3",
+    "@oclif/plugin-autocomplete": "^3",
     "@salesforce/b2c-tooling": "workspace:*",
     "cliui": "^9.0.1"
   },
@@ -59,7 +61,9 @@
     "commands": "./dist/commands",
     "plugins": [
       "@oclif/plugin-help",
-      "@oclif/plugin-plugins"
+      "@oclif/plugin-plugins",
+      "@oclif/plugin-not-found",
+      "@oclif/plugin-autocomplete"
     ],
     "topicSeparator": " ",
     "topics": {
