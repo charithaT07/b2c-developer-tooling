@@ -19,7 +19,12 @@ const DEFAULT_API_VERSION = 'v25_6';
 export type {paths, components};
 
 /**
- * The typed OCAPI client - this is the actual openapi-fetch Client.
+ * The typed OCAPI client - this is the openapi-fetch Client with full type safety.
+ *
+ * **Note:** This client is typically accessed via {@link B2CInstance.ocapi} rather
+ * than created directly. The `B2CInstance` class handles authentication setup.
+ *
+ * @see {@link createOcapiClient} for direct instantiation
  */
 export type OcapiClient = Client<paths>;
 
@@ -129,12 +134,21 @@ export function createLoggingMiddleware(): Middleware {
  * handled via middleware. This gives full access to all openapi-fetch
  * features with type-safe paths, parameters, and responses.
  *
+ * **Note:** This client is typically accessed via {@link B2CInstance.ocapi} rather
+ * than created directly. The `B2CInstance` class handles authentication setup.
+ *
  * @param hostname - B2C instance hostname
- * @param auth - OAuth authentication strategy
+ * @param auth - Authentication strategy (typically OAuth)
  * @param apiVersion - API version (defaults to v25_6)
  * @returns Typed openapi-fetch client
  *
  * @example
+ * // Via B2CInstance (recommended)
+ * const instance = B2CInstance.fromDwJson();
+ * const { data, error } = await instance.ocapi.GET('/sites', {});
+ *
+ * @example
+ * // Direct instantiation (advanced)
  * const client = createOcapiClient('sandbox.demandware.net', authStrategy);
  *
  * // Fully typed GET request

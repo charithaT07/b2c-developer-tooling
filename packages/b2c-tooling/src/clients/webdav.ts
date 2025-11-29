@@ -27,7 +27,17 @@ export interface PropfindEntry {
  * Handles WebDAV requests with proper authentication and provides
  * typed methods for common operations.
  *
+ * **Note:** This client is typically accessed via {@link B2CInstance.webdav} rather
+ * than instantiated directly. The `B2CInstance` class handles authentication setup.
+ *
  * @example
+ * // Via B2CInstance (recommended)
+ * const instance = B2CInstance.fromDwJson();
+ * await instance.webdav.mkcol('Cartridges/v1');
+ * await instance.webdav.put('Cartridges/v1/app.zip', zipBuffer);
+ *
+ * @example
+ * // Direct instantiation (advanced)
  * const client = new WebDavClient('sandbox.demandware.net', authStrategy);
  * await client.mkcol('Cartridges/v1');
  * await client.put('Cartridges/v1/app_storefront/cartridge.zip', zipBuffer);
