@@ -22,3 +22,5 @@ docs/.vitepress/cache
 
 # TypeDoc generated API docs (regenerated on build)
 docs/api/
+
+dw.json
