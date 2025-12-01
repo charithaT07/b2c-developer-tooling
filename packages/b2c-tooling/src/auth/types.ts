@@ -57,6 +57,12 @@ export interface AuthConfig {
 
   /** API key for MRT/external services */
   apiKey?: ApiKeyAuthConfig;
+
+  /**
+   * Allowed authentication methods in priority order.
+   * If not set, defaults to all methods: ['client-credentials', 'implicit', 'basic', 'api-key']
+   */
+  authMethods?: AuthMethod[];
 }
 
 /**
@@ -74,4 +80,39 @@ export interface AccessTokenResponse {
 export interface DecodedJWT {
   header: Record<string, unknown>;
   payload: Record<string, unknown>;
+}
+
+/**
+ * Available authentication methods.
+ * - 'client-credentials': OAuth client credentials flow (requires clientId + clientSecret)
+ * - 'implicit': Interactive browser-based OAuth (requires clientId only)
+ * - 'basic': Username/password (access key) authentication
+ * - 'api-key': API key authentication (for MRT, etc.)
+ */
+export type AuthMethod = 'client-credentials' | 'implicit' | 'basic' | 'api-key';
+
+/** All available auth methods in default priority order */
+export const ALL_AUTH_METHODS: AuthMethod[] = ['client-credentials', 'implicit', 'basic', 'api-key'];
+
+/**
+ * Configuration for resolving an auth strategy.
+ * Combines all possible credential types.
+ */
+export interface AuthCredentials {
+  /** OAuth client ID */
+  clientId?: string;
+  /** OAuth client secret (for client-credentials flow) */
+  clientSecret?: string;
+  /** OAuth scopes to request */
+  scopes?: string[];
+  /** Account Manager host (defaults to account.demandware.com) */
+  accountManagerHost?: string;
+  /** Username for basic auth */
+  username?: string;
+  /** Password/access key for basic auth */
+  password?: string;
+  /** API key for api-key auth */
+  apiKey?: string;
+  /** Header name for API key (defaults to Authorization with Bearer prefix) */
+  apiKeyHeaderName?: string;
 }
