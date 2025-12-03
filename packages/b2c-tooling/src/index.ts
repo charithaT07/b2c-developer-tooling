@@ -46,9 +46,17 @@ export {B2CInstance} from './instance/index.js';
 export type {InstanceConfig, FromDwJsonOptions, B2CInstanceOptions} from './instance/index.js';
 
 // Clients
-export {WebDavClient, createOcapiClient, createAuthMiddleware, createSlasClient} from './clients/index.js';
+export {
+  WebDavClient,
+  createOcapiClient,
+  createAuthMiddleware,
+  createExtraParamsMiddleware,
+  createSlasClient,
+  createOdsClient,
+} from './clients/index.js';
 export type {
   PropfindEntry,
+  ExtraParamsConfig,
   OcapiClient,
   OcapiError,
   OcapiResponse,
@@ -60,6 +68,12 @@ export type {
   SlasResponse,
   SlasPaths,
   SlasComponents,
+  OdsClient as OdsApiClient,
+  OdsClientConfig,
+  OdsError,
+  OdsResponse,
+  OdsPaths,
+  OdsComponents,
 } from './clients/index.js';
 
 // Context Layer - Platform
@@ -98,3 +112,6 @@ export type {JobExecutionResult} from './operations/jobs/index.js';
 // Operations - Sites
 export {listSites, getSite} from './operations/sites/index.js';
 export type {Site} from './operations/sites/index.js';
+
+// Defaults
+export {DEFAULT_ACCOUNT_MANAGER_HOST, DEFAULT_ODS_HOST} from './defaults.js';

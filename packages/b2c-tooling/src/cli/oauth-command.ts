@@ -5,6 +5,7 @@ import type {ResolvedConfig, LoadConfigOptions, AuthMethod} from './config.js';
 import {OAuthStrategy} from '../auth/oauth.js';
 import {ImplicitOAuthStrategy} from '../auth/oauth-implicit.js';
 import {t} from '../i18n/index.js';
+import {DEFAULT_ACCOUNT_MANAGER_HOST} from '../defaults.js';
 
 /**
  * Base command for operations requiring OAuth authentication.
@@ -40,14 +41,44 @@ export abstract class OAuthCommand<T extends typeof Command> extends BaseCommand
       env: 'SFCC_SHORTCODE',
       helpGroup: 'AUTH',
     }),
-    'auth-method': Flags.string({
-      description: 'Allowed auth methods in priority order (can be specified multiple times)',
+    'auth-methods': Flags.string({
+      description: 'Allowed auth methods in priority order (comma-separated or multiple flags)',
       env: 'SFCC_AUTH_METHODS',
       multiple: true,
       options: ALL_AUTH_METHODS,
       helpGroup: 'AUTH',
     }),
+    'account-manager-host': Flags.string({
+      description: 'Account Manager hostname for OAuth',
+      env: 'SFCC_ACCOUNT_MANAGER_HOST',
+      default: DEFAULT_ACCOUNT_MANAGER_HOST,
+      helpGroup: 'AUTH',
+    }),
   };
+
+  /**
+   * Parses auth methods from flags, supporting both comma-separated values and multiple flags.
+   * Returns methods in the order specified (priority order).
+   */
+  protected parseAuthMethods(): AuthMethod[] | undefined {
+    const flagValues = this.flags['auth-methods'] as string[] | undefined;
+    if (!flagValues || flagValues.length === 0) {
+      return undefined;
+    }
+
+    // Flatten comma-separated values while preserving order
+    const methods: AuthMethod[] = [];
+    for (const value of flagValues) {
+      const parts = value.split(',').map((s) => s.trim());
+      for (const part of parts) {
+        if (part && ALL_AUTH_METHODS.includes(part as AuthMethod)) {
+          methods.push(part as AuthMethod);
+        }
+      }
+    }
+
+    return methods.length > 0 ? methods : undefined;
+  }
 
   protected override loadConfiguration(): ResolvedConfig {
     const options: LoadConfigOptions = {
@@ -59,7 +90,7 @@ export abstract class OAuthCommand<T extends typeof Command> extends BaseCommand
       clientId: this.flags['client-id'],
       clientSecret: this.flags['client-secret'],
       shortCode: this.flags['short-code'],
-      authMethods: this.flags['auth-method'] as AuthMethod[] | undefined,
+      authMethods: this.parseAuthMethods(),
     };
 
     const config = loadConfig(flagConfig, options);
@@ -73,6 +104,13 @@ export abstract class OAuthCommand<T extends typeof Command> extends BaseCommand
   }
 
   /**
+   * Gets the configured Account Manager host.
+   */
+  protected get accountManagerHost(): string {
+    return this.flags['account-manager-host'] ?? DEFAULT_ACCOUNT_MANAGER_HOST;
+  }
+
+  /**
    * Gets an OAuth auth strategy based on allowed auth methods and available credentials.
    *
    * Iterates through allowed methods (in priority order) and returns the first
@@ -82,6 +120,7 @@ export abstract class OAuthCommand<T extends typeof Command> extends BaseCommand
    */
   protected getOAuthStrategy(): OAuthStrategy | ImplicitOAuthStrategy {
     const config = this.resolvedConfig;
+    const accountManagerHost = this.accountManagerHost;
     // Default to client-credentials and implicit if no methods specified
     const allowedMethods = config.authMethods || (['client-credentials', 'implicit'] as AuthMethod[]);
 
@@ -93,6 +132,7 @@ export abstract class OAuthCommand<T extends typeof Command> extends BaseCommand
               clientId: config.clientId,
               clientSecret: config.clientSecret,
               scopes: config.scopes,
+              accountManagerHost,
             });
           }
           break;
@@ -102,6 +142,7 @@ export abstract class OAuthCommand<T extends typeof Command> extends BaseCommand
             return new ImplicitOAuthStrategy({
               clientId: config.clientId,
               scopes: config.scopes,
+              accountManagerHost,
             });
           }
           break;

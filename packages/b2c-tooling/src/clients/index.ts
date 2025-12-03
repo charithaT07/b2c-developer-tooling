@@ -2,13 +2,14 @@
  * API clients for B2C Commerce operations.
  *
  * This module provides typed client classes for interacting with B2C Commerce
- * APIs including WebDAV, OCAPI, and SCAPI.
+ * APIs including WebDAV, OCAPI, SCAPI, and ODS.
  *
  * ## Available Clients
  *
  * - {@link WebDavClient} - File operations via WebDAV
  * - {@link OcapiClient} - Data API operations via OCAPI (openapi-fetch Client)
  * - {@link SlasClient} - SLAS Admin API for managing tenants and clients
+ * - {@link OdsClient} - On-Demand Sandbox API for managing developer sandboxes
  *
  * ## Usage
  *
@@ -86,9 +87,9 @@
  *     baseUrl: `https://${config.host}/api/v1`,
  *   });
  *
- *   // Add middleware - use a short identifier for log prefixes
- *   client.use(createLoggingMiddleware('MYAPI'));
+ *   // Add middleware - auth first, logging last (so logging sees complete request)
  *   client.use(createAuthMiddleware(auth));
+ *   client.use(createLoggingMiddleware('MYAPI'));
  *
  *   return client;
  * }
@@ -108,7 +109,8 @@
 export {WebDavClient} from './webdav.js';
 export type {PropfindEntry} from './webdav.js';
 
-export {createAuthMiddleware, createLoggingMiddleware} from './middleware.js';
+export {createAuthMiddleware, createLoggingMiddleware, createExtraParamsMiddleware} from './middleware.js';
+export type {ExtraParamsConfig} from './middleware.js';
 
 export {createOcapiClient} from './ocapi.js';
 export type {
@@ -128,3 +130,13 @@ export type {
   paths as SlasPaths,
   components as SlasComponents,
 } from './slas-admin.js';
+
+export {createOdsClient} from './ods.js';
+export type {
+  OdsClient,
+  OdsClientConfig,
+  OdsError,
+  OdsResponse,
+  paths as OdsPaths,
+  components as OdsComponents,
+} from './ods.js';
