@@ -106,8 +106,36 @@ export type {
 } from './operations/code/index.js';
 
 // Operations - Jobs
-export {runJob, getJobStatus} from './operations/jobs/index.js';
-export type {JobExecutionResult} from './operations/jobs/index.js';
+export {
+  executeJob,
+  getJobExecution,
+  waitForJob,
+  searchJobExecutions,
+  findRunningJobExecution,
+  getJobLog,
+  getJobErrorMessage,
+  JobExecutionError,
+  siteArchiveImport,
+  siteArchiveExport,
+  siteArchiveExportToPath,
+} from './operations/jobs/index.js';
+export type {
+  JobExecution,
+  JobStepExecution,
+  JobExecutionStatus,
+  JobExecutionParameter,
+  ExecuteJobOptions,
+  WaitForJobOptions,
+  SearchJobExecutionsOptions,
+  JobExecutionSearchResult,
+  SiteArchiveImportOptions,
+  SiteArchiveImportResult,
+  SiteArchiveExportOptions,
+  SiteArchiveExportResult,
+  ExportDataUnitsConfiguration,
+  ExportSitesConfiguration,
+  ExportGlobalDataConfiguration,
+} from './operations/jobs/index.js';
 
 // Operations - Sites
 export {listSites, getSite} from './operations/sites/index.js';
