@@ -7,6 +7,7 @@ const guideSidebar = [
     items: [
       { text: 'Introduction', link: '/guide/' },
       { text: 'Installation', link: '/guide/installation' },
+      { text: 'Authentication Setup', link: '/guide/authentication' },
       { text: 'Configuration', link: '/guide/configuration' },
     ],
   },

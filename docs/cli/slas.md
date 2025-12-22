@@ -10,9 +10,34 @@ These flags are available on all SLAS commands:
 |------|---------------------|-------------|
 | `--tenant-id` | `SFCC_TENANT_ID` | (Required) SLAS tenant ID (organization ID) |
 
-### Authentication
+## Authentication
 
-SLAS commands require OAuth authentication. Provide `--client-id` and `--client-secret` or set the corresponding environment variables.
+SLAS commands require an Account Manager API Client with appropriate roles.
+
+### Required Roles
+
+| Auth Method | Role | Description |
+|-------------|------|-------------|
+| User Authentication | `SLAS Organization Administrator` | For interactive/browser-based authentication |
+| Client Credentials | `Sandbox API User` | For automated/service authentication |
+
+### Tenant Scope
+
+The API client must have tenant scope configured for the realm/organization you wish to manage. This is configured in Account Manager when setting up the API client.
+
+### Configuration
+
+Provide credentials via flags or environment variables:
+
+```bash
+# Client Credentials
+export SFCC_CLIENT_ID=my-client
+export SFCC_CLIENT_SECRET=my-secret
+b2c slas client list --tenant-id abcd_123
+
+# Or via flags
+b2c slas client list --tenant-id abcd_123 --client-id xxx --client-secret yyy
+```
 
 ---
 

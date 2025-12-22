@@ -21,6 +21,40 @@ MRT commands resolve configuration in the following order of precedence:
 3. `dw.json` file (`mrtProject`, `mrtEnvironment` fields)
 4. `~/.mobify` config file (for `api_key`)
 
+## Authentication
+
+MRT commands use API key authentication. The API key is configured in the Managed Runtime dashboard and grants access to specific projects.
+
+### Getting an API Key
+
+1. Log in to the [Managed Runtime dashboard](https://runtime.commercecloud.com/)
+2. Navigate to **Account Settings** > **API Keys**
+3. Create a new API key or use an existing one
+4. The API key grants access to all projects in your organization
+
+### Configuration
+
+Provide the API key via one of these methods (in order of precedence):
+
+1. **Command-line flag**: `--api-key your-api-key`
+2. **Environment variable**: `export SFCC_MRT_API_KEY=your-api-key`
+3. **Mobify config file**: `~/.mobify` with `api_key` field
+
+### Example ~/.mobify File
+
+```json
+{
+  "api_key": "your-mrt-api-key"
+}
+```
+
+### Project Access
+
+Your API key provides access to all projects in your MRT organization. Specify the project using:
+
+- `--project` flag or `SFCC_MRT_PROJECT` environment variable
+- `mrtProject` field in `dw.json`
+
 ---
 
 ## b2c mrt push
@@ -338,26 +372,4 @@ b2c mrt env var delete MY_VAR --project acme-storefront --environment production
 
 # Short form
 b2c mrt env var delete OLD_API_KEY -p my-project -e staging
-```
-
----
-
-## Authentication
-
-All MRT commands use API key authentication. You can provide credentials in several ways:
-
-1. **Command-line flag**: `--api-key your-api-key`
-2. **Environment variable**: `export SFCC_MRT_API_KEY=your-api-key`
-3. **Mobify config file**: `~/.mobify` with `api_key` field
-
-### Getting an API Key
-
-Obtain your MRT API key from the Managed Runtime dashboard in your Salesforce Commerce Cloud account.
-
-### Example ~/.mobify File
-
-```json
-{
-  "api_key": "your-mrt-api-key"
-}
 ```

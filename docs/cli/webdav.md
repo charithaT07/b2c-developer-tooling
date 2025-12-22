@@ -24,12 +24,47 @@ Available roots:
 - `logs` - Log files
 - `securitylogs` - Security log files
 
-### Authentication
+## Authentication
 
-WebDAV commands support both Basic Auth and OAuth authentication:
+WebDAV commands require authentication to access instance files.
 
-- **Basic Auth** (recommended for performance): `--username` and `--password`
-- **OAuth**: `--client-id` and `--client-secret`
+### Basic Auth (Recommended)
+
+Basic Auth provides better performance for WebDAV operations using your Business Manager username and WebDAV access key:
+
+```bash
+export SFCC_USERNAME=my-user
+export SFCC_PASSWORD=my-webdav-access-key
+b2c webdav ls
+```
+
+Or via flags:
+
+```bash
+b2c webdav ls -u my-user -p my-access-key
+```
+
+### OAuth
+
+OAuth can also be used with an Account Manager API Client:
+
+```bash
+export SFCC_CLIENT_ID=my-client
+export SFCC_CLIENT_SECRET=my-secret
+b2c webdav ls
+```
+
+### Mixed Authentication
+
+For operations that require both WebDAV and OCAPI (like `code deploy`), you can provide both:
+
+```bash
+export SFCC_USERNAME=my-user
+export SFCC_PASSWORD=my-access-key
+export SFCC_CLIENT_ID=my-client
+export SFCC_CLIENT_SECRET=my-secret
+b2c code deploy
+```
 
 ---
 
@@ -291,47 +326,3 @@ b2c webdav unzip --root=cartridges my-cartridge.zip
 
 - Contents are extracted to the same directory as the zip file
 - This operation is performed server-side
-
----
-
-## Authentication
-
-WebDAV commands require authentication to access instance files.
-
-### Basic Auth (Recommended)
-
-Basic Auth provides better performance for WebDAV operations:
-
-```bash
-export SFCC_USERNAME=my-user
-export SFCC_PASSWORD=my-access-key
-b2c webdav ls
-```
-
-Or via flags:
-
-```bash
-b2c webdav ls -u my-user -p my-access-key
-```
-
-### OAuth
-
-OAuth can also be used:
-
-```bash
-export SFCC_CLIENT_ID=my-client
-export SFCC_CLIENT_SECRET=my-secret
-b2c webdav ls
-```
-
-### Mixed Authentication
-
-For operations that require both WebDAV and OCAPI (like `code deploy`), you can provide both:
-
-```bash
-export SFCC_USERNAME=my-user
-export SFCC_PASSWORD=my-access-key
-export SFCC_CLIENT_ID=my-client
-export SFCC_CLIENT_SECRET=my-secret
-b2c code deploy
-```

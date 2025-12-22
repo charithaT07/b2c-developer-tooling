@@ -10,9 +10,34 @@ These flags are available on all ODS commands:
 |------|---------------------|-------------|
 | `--sandbox-api-host` | `SFCC_SANDBOX_API_HOST` | ODS API hostname (default: admin.dx.commercecloud.salesforce.com) |
 
-### Authentication
+## Authentication
 
-ODS commands require OAuth authentication. Provide `--client-id` and `--client-secret` or set the corresponding environment variables.
+ODS commands require an Account Manager API Client with appropriate roles.
+
+### Required Roles
+
+| Auth Method | Role | Description |
+|-------------|------|-------------|
+| User Authentication | `Sandbox API User` | For interactive/browser-based authentication |
+| Client Credentials | `Sandbox API User` | For automated/service authentication |
+
+### Tenant Scope
+
+The API client must have tenant scope configured for the realm(s) you wish to manage. This is configured in Account Manager when setting up the API client.
+
+### Configuration
+
+Provide credentials via flags or environment variables:
+
+```bash
+# Client Credentials
+export SFCC_CLIENT_ID=my-client
+export SFCC_CLIENT_SECRET=my-secret
+b2c ods list
+
+# Or via flags
+b2c ods list --client-id xxx --client-secret yyy
+```
 
 ---
 

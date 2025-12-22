@@ -84,32 +84,37 @@ b2c auth token | pbcopy  # macOS: copy to clipboard
 
 ## Authentication Overview
 
-The CLI supports multiple authentication methods depending on the operation:
+The CLI supports multiple authentication methods depending on the operation.
 
-### OAuth Client Credentials
+### Account Manager API Client (OAuth)
 
-Most commands use OAuth client credentials authentication:
+Most instance operations require an Account Manager API Client. The CLI supports two OAuth flows:
+
+| Auth Method | Description | Use Case |
+|-------------|-------------|----------|
+| User Authentication | Interactive browser-based login | Development, manual operations |
+| Client Credentials | Non-interactive with client ID/secret | CI/CD, automation, scripts |
 
 ```bash
+# Client Credentials
 export SFCC_CLIENT_ID=my-client
 export SFCC_CLIENT_SECRET=my-secret
 ```
 
-Required for:
+Used by:
 - Code management (`code list`, `code activate`, `code delete`)
 - Job operations (`job run`, `job search`, `job import`, `job export`)
 - Site operations (`sites list`)
-- ODS operations
-- SLAS operations
-- MRT operations
+- ODS operations (requires `Sandbox API User` role)
+- SLAS operations (requires `SLAS Organization Administrator` or `Sandbox API User` role)
 
 ### Basic Auth (WebDAV)
 
-WebDAV operations support Basic Auth for better performance:
+WebDAV operations support Basic Auth using your Business Manager username and WebDAV access key:
 
 ```bash
 export SFCC_USERNAME=my-user
-export SFCC_PASSWORD=my-access-key
+export SFCC_PASSWORD=my-webdav-access-key
 ```
 
 Used by:
@@ -117,9 +122,19 @@ Used by:
 - `code watch` (file upload)
 - `webdav` commands
 
+### MRT API Key
+
+Managed Runtime commands use a separate API key obtained from the MRT dashboard:
+
+```bash
+export SFCC_MRT_API_KEY=your-mrt-api-key
+```
+
+See [MRT Commands](./mrt#authentication) for details.
+
 ### Mixed Authentication
 
-Some commands (like `code deploy`) require both OAuth and WebDAV access. You can provide both:
+Some commands (like `code deploy` with `--reload`) require both OAuth and WebDAV access:
 
 ```bash
 export SFCC_CLIENT_ID=my-client
@@ -131,7 +146,7 @@ b2c code deploy --reload
 
 ### Configuration File
 
-Credentials can also be stored in a `dw.json` file:
+Credentials can be stored in a `dw.json` file:
 
 ```json
 {
@@ -143,3 +158,7 @@ Credentials can also be stored in a `dw.json` file:
 ```
 
 Use `--config` to specify a custom config file path, or `--instance` to select a named instance configuration.
+
+### Tenant Scope
+
+For ODS and SLAS operations, your API client must have tenant scope configured for the realm/organization you wish to manage. This is set up in Account Manager when creating or editing the API client.
