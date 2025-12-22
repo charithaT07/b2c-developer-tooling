@@ -12,31 +12,33 @@ These flags are available on all ODS commands:
 
 ## Authentication
 
-ODS commands require an Account Manager API Client with appropriate roles.
+ODS commands require an Account Manager API Client.
 
 ### Required Roles
 
-| Auth Method | Role | Description |
-|-------------|------|-------------|
-| User Authentication | `Sandbox API User` | For interactive/browser-based authentication |
-| Client Credentials | `Sandbox API User` | For automated/service authentication |
+| Auth Method | Role | Configured On |
+|-------------|------|---------------|
+| User Authentication | `Sandbox API User` | Your user account |
+| Client Credentials | `Sandbox API User` | The API client |
+
+**User Authentication**: Used when only `--client-id` is provided. Opens a browser for login. The `Sandbox API User` role must be assigned to your user account in Account Manager.
+
+**Client Credentials**: Used when both `--client-id` and `--client-secret` are provided. The `Sandbox API User` role must be assigned to the API client.
 
 ### Tenant Scope
 
-The API client must have tenant scope configured for the realm(s) you wish to manage. This is configured in Account Manager when setting up the API client.
+The API client must have tenant scope configured for the realm(s) you wish to manage. This is configured in Account Manager under the API client's **Organizations** section.
 
 ### Configuration
 
-Provide credentials via flags or environment variables:
-
 ```bash
+# User Authentication (opens browser)
+b2c ods list --client-id xxx
+
 # Client Credentials
 export SFCC_CLIENT_ID=my-client
 export SFCC_CLIENT_SECRET=my-secret
 b2c ods list
-
-# Or via flags
-b2c ods list --client-id xxx --client-secret yyy
 ```
 
 ---

@@ -18,6 +18,19 @@ The CLI uses different authentication mechanisms depending on the operation:
 
 Most CLI operations require an Account Manager API Client. This is configured in the Salesforce Commerce Cloud Account Manager.
 
+### Authentication Methods
+
+The CLI supports two authentication methods:
+
+| Method | When Used | Role Configuration |
+|--------|-----------|-------------------|
+| **User Authentication** | When only `--client-id` is provided (no secret) | Roles configured on your **user account** |
+| **Client Credentials** | When both `--client-id` and `--client-secret` are provided | Roles configured on the **API client** |
+
+**User Authentication** opens a browser for interactive login and uses roles assigned to your user account. This is ideal for development and manual operations.
+
+**Client Credentials** uses the API client's secret for non-interactive authentication. This is ideal for CI/CD pipelines and automation.
+
 ### Creating an API Client
 
 1. Log in to [Account Manager](https://account.demandware.com)
@@ -25,19 +38,31 @@ Most CLI operations require an Account Manager API Client. This is configured in
 3. Click **Add API Client**
 4. Fill in the required fields:
    - **Display Name**: A descriptive name (e.g., "B2C CLI")
-   - **Password**: A strong client secret (save this securely)
+   - **Password**: A strong client secret (save this securely for Client Credentials auth)
 5. Configure the **Token Endpoint Auth Method**:
    - `client_secret_post` for client credentials flow
 6. Set **Access Token Format** to `JWT`
 
 ### Assigning Roles
 
-Under the **Roles** section, add the appropriate roles based on what operations you need:
+Roles grant permission to perform specific operations. Where you configure roles depends on your authentication method:
+
+#### For Client Credentials (roles on API Client)
+
+Under the API Client's **Roles** section, add:
 
 | Role | Operations |
 |------|------------|
-| `Sandbox API User` | ODS management, SLAS client management (client credentials) |
-| `SLAS Organization Administrator` | SLAS client management (user authentication) |
+| `Sandbox API User` | ODS management, SLAS client management |
+
+#### For User Authentication (roles on User)
+
+In Account Manager, navigate to your user account and add roles:
+
+| Role | Operations |
+|------|------------|
+| `Sandbox API User` | ODS management |
+| `SLAS Organization Administrator` | SLAS client management |
 
 ### Configuring Scopes
 

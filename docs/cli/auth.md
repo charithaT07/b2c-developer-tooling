@@ -88,17 +88,21 @@ The CLI supports multiple authentication methods depending on the operation.
 
 ### Account Manager API Client (OAuth)
 
-Most instance operations require an Account Manager API Client. The CLI supports two OAuth flows:
+Most instance operations require an Account Manager API Client. The CLI supports two authentication methods:
 
-| Auth Method | Description | Use Case |
-|-------------|-------------|----------|
-| User Authentication | Interactive browser-based login | Development, manual operations |
-| Client Credentials | Non-interactive with client ID/secret | CI/CD, automation, scripts |
+| Auth Method | When Used | Role Configuration |
+|-------------|-----------|-------------------|
+| User Authentication | Only `--client-id` provided | Roles on your **user account** |
+| Client Credentials | Both `--client-id` and `--client-secret` provided | Roles on the **API client** |
 
 ```bash
+# User Authentication (opens browser for login)
+b2c ods list --client-id xxx
+
 # Client Credentials
 export SFCC_CLIENT_ID=my-client
 export SFCC_CLIENT_SECRET=my-secret
+b2c ods list
 ```
 
 Used by:
@@ -106,7 +110,7 @@ Used by:
 - Job operations (`job run`, `job search`, `job import`, `job export`)
 - Site operations (`sites list`)
 - ODS operations (requires `Sandbox API User` role)
-- SLAS operations (requires `SLAS Organization Administrator` or `Sandbox API User` role)
+- SLAS operations (requires `SLAS Organization Administrator` or `Sandbox API User` role depending on auth method)
 
 ### Basic Auth (WebDAV)
 
