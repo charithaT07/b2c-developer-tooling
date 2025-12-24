@@ -6,7 +6,7 @@
   "bin": {
     "b2c": "./bin/run.js"
   },
-  "bugs": "https://github.com/SalesforceCommerceCloud/b2c-cli/issues",
+  "bugs": "https://github.com/SalesforceCommerceCloud/b2c-developer-tooling/issues",
   "dependencies": {
     "@oclif/core": "^4",
     "@oclif/plugin-autocomplete": "^3",
@@ -47,7 +47,7 @@
     "./dist",
     "./oclif.manifest.json"
   ],
-  "homepage": "https://github.com/SalesforceCommerceCloud/b2c-cli",
+  "homepage": "https://salesforcecommercecloud.github.io/b2c-developer-tooling",
   "keywords": [
     "SFCC",
     "B2C",
@@ -107,7 +107,7 @@
       }
     }
   },
-  "repository": "SalesforceCommerceCloud/b2c-cli",
+  "repository": "SalesforceCommerceCloud/b2c-developer-tooling",
   "scripts": {
     "build": "shx rm -rf dist && tsc -p tsconfig.build.json",
     "lint": "eslint",
