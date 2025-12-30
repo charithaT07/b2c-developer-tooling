@@ -11,6 +11,7 @@ export default class Test extends BaseCommand<typeof Test> {
 
   async run(): Promise<void> {
     // Test this.log() which now uses pino
+    this.baseCommandTest();
     this.log('Using this.log() - goes through pino');
     this.warn('Using this.warn() - goes through pino');
 

@@ -59,7 +59,7 @@
     }
   },
   "scripts": {
-    "build": "tsc",
+    "build": "shx rm -rf dist && tsc -p tsconfig.build.json",
     "clean": "shx rm -rf dist",
     "lint": "eslint",
     "format": "prettier --write src",
@@ -90,6 +90,8 @@
     "@types/node": "^22.16.5",
     "chai": "^4",
     "eslint": "^9",
+    "eslint-config-oclif": "^6",
+    "eslint-plugin-header": "^3.1.1",
     "eslint-config-prettier": "^10",
     "eslint-plugin-prettier": "^5.5.4",
     "mocha": "^10",
