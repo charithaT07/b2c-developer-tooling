@@ -32,6 +32,7 @@
     "eslint-config-oclif": "^6",
     "eslint-config-prettier": "^10",
     "eslint-plugin-prettier": "^5.5.4",
+    "execa": "^9.5.2",
     "mocha": "^10",
     "oclif": "^4",
     "prettier": "^3.6.2",
@@ -120,6 +121,7 @@
     "test": "c8 env OCLIF_TEST_ROOT=. mocha --forbid-only \"test/**/*.test.ts\"",
     "test:ci": "c8 env OCLIF_TEST_ROOT=. mocha --forbid-only --reporter json --reporter-option output=test-results.json \"test/**/*.test.ts\"",
     "test:unit": "env OCLIF_TEST_ROOT=. mocha --forbid-only \"test/**/*.test.ts\"",
+    "test:e2e": "./test/functional/e2e_cli_test.sh",
     "coverage": "c8 report",
     "version": "oclif readme && git add README.md",
     "dev": "node ./bin/dev.js"
