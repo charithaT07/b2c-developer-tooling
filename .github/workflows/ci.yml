@@ -65,6 +65,18 @@ jobs:
         working-directory: packages/b2c-cli
         run: pnpm run test:ci && pnpm run lint
 
+      - name: Run E2E tests
+        id: e2e-test
+        if: always() && steps.cli-test.conclusion == 'success' && (github.event.pull_request.head.repo.full_name == github.repository || github.event_name == 'push')
+        working-directory: packages/b2c-cli
+        env:
+          SFCC_CLIENT_ID: ${{ secrets.SFCC_CLIENT_ID }}
+          SFCC_CLIENT_SECRET: ${{ secrets.SFCC_CLIENT_SECRET }}
+          TEST_REALM: ${{ secrets.TEST_REALM }}
+          SFCC_ACCOUNT_MANAGER_HOST: ${{ secrets.SFCC_ACCOUNT_MANAGER_HOST }}
+          SFCC_SANDBOX_API_HOST: ${{ secrets.SFCC_SANDBOX_API_HOST }}
+        run: pnpm --filter @salesforce/b2c-cli run test:e2e
+
       - name: Test Report
         uses: dorny/test-reporter@fe45e9537387dac839af0d33ba56eed8e24189e8  # v2.3.0
         if: always() && steps.sdk-test.conclusion != 'cancelled'
