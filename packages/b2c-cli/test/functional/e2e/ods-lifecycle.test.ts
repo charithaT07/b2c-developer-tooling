@@ -98,7 +98,7 @@ describe('ODS Lifecycle E2E Tests', function () {
   describe('Step 1: Create Sandbox', function () {
     it('should create a new sandbox with permissions and wait for readiness', async function () {
       // --wait can take 5-10 minutes, so increase timeout for this test
-      this.timeout(600000); // 10 minutes
+      this.timeout(600000); // 6 minutes
       
       const result = await runCLI([
         'ods', 'create',
@@ -166,7 +166,8 @@ describe('ODS Lifecycle E2E Tests', function () {
         CARTRIDGES_DIR,
         '--cartridge', 'plugin_example',
         '--server', serverHostname,
-        '--account-manager-host', process.env.SFCC_ACCOUNT_MANAGER_HOST || 'account-pod5.demandware.net',
+        '--account-manager-host',
+        process.env.SFCC_ACCOUNT_MANAGER_HOST!,
         '--json'
       ]);
 
@@ -218,7 +219,7 @@ describe('ODS Lifecycle E2E Tests', function () {
       expect(result.exitCode).to.equal(0, `Start command failed: ${result.stderr}`);
       const state = await getSandboxState(sandboxId);
       if (state) {
-        expect(['started', 'starting']).to.include(state);
+        expect(['started']).to.include(state);
       }
     });
   });

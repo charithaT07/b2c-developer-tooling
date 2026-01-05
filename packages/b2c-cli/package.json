@@ -32,7 +32,7 @@
     "eslint-config-oclif": "^6",
     "eslint-config-prettier": "^10",
     "eslint-plugin-prettier": "^5.5.4",
-    "execa": "^9.5.2",
+    "execa": "^9.6.1",
     "mocha": "^10",
     "oclif": "^4",
     "prettier": "^3.6.2",
